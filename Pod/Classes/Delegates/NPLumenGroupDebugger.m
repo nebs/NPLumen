@@ -9,6 +9,14 @@
 
 @implementation NPLumenGroupDebugger
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.vectorViews = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 #pragma mark - Private Helpers
 
 - (UIView *)vectorViewForView:(UIView *)view {
