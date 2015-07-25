@@ -32,7 +32,7 @@
 
 - (void)update {
     for (UIView *view in self.views) {
-        [self.delegate lumenGroup:self didUpdateLightVector:CGPointMake(-0.35, 0.65) forView:view];
+        [self.delegate lumenGroup:self didUpdateLightVector:[self lightVectorForView:view] forView:view];
     }
 }
 
@@ -66,6 +66,41 @@
     for (UIView *view in views) {
         [self addView:view];
     }
+}
+
+#pragma mark - Private Helpers
+
+- (CGPoint)lightVectorForView:(UIView *)view {
+    UIView *referenceView = view.superview;
+
+    CGPoint viewCenterRelativeToWindow = [referenceView convertPoint:view.center fromView:view];
+    CGPoint lightVector = CGPointZero;
+    CGFloat largestDistance = 0;
+
+    for (UIView *sourceView in self.sourceViews) {
+        CGPoint sourceViewCenterRelativeToWindow = [referenceView convertPoint:sourceView.center fromView:view];
+        CGFloat distanceBetweenSourceAndView = [self distanceBetweenPointA:sourceViewCenterRelativeToWindow andPointB:viewCenterRelativeToWindow];
+        if (distanceBetweenSourceAndView > largestDistance) {
+            largestDistance = distanceBetweenSourceAndView;
+        }
+    }
+
+    for (UIView *sourceView in self.sourceViews) {
+        CGPoint sourceViewCenterRelativeToWindow = [referenceView convertPoint:sourceView.center fromView:view];
+        CGFloat normalizationFactor = largestDistance == 0 ? 1.0 : largestDistance;
+        CGFloat normalizedX = (viewCenterRelativeToWindow.x - sourceViewCenterRelativeToWindow.x) / normalizationFactor;
+        CGFloat normalizedY = (viewCenterRelativeToWindow.y - sourceViewCenterRelativeToWindow.y) / normalizationFactor;
+        lightVector.x += normalizedX;
+        lightVector.y += normalizedY;
+    }
+
+    return lightVector;
+}
+
+- (CGFloat)distanceBetweenPointA:(CGPoint)pointA andPointB:(CGPoint)pointB {
+    CGFloat dx = (pointB.x - pointA.x);
+    CGFloat dy = (pointB.y - pointA.y);
+    return sqrt(dx * dx + dy * dy);
 }
 
 #pragma mark - KVO
