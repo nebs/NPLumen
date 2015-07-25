@@ -16,8 +16,7 @@
     UIView *vectorView = self.vectorViews[key];
     if (!vectorView) {
         vectorView = [[UIView alloc] initWithFrame:view.bounds];
-        vectorView.backgroundColor = [UIColor redColor];
-        vectorView.alpha = 0.5;
+        vectorView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
         [view addSubview:vectorView];
         self.vectorViews[key] = vectorView;
     }
@@ -39,7 +38,7 @@
     shapeLayer.frame = CGRectMake(0, 0, viewWidth, viewHeight);
     shapeLayer.path = bezierPath.CGPath;
     shapeLayer.strokeColor = [UIColor whiteColor].CGColor;
-    shapeLayer.lineWidth = 1.0;
+    shapeLayer.lineWidth = 3.0;
 
     for (CALayer *layer in vectorView.layer.sublayers) {
         [layer removeFromSuperlayer];
