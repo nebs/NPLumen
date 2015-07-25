@@ -1,0 +1,6 @@
+framework module NPLumen {
+  umbrella header "Pods-NPLumen_Example-NPLumen-umbrella.h"
+
+  export *
+  module * { export * }
+}
