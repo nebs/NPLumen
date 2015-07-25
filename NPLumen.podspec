@@ -1,38 +1,23 @@
-#
-# Be sure to run `pod lib lint NPLumen.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "NPLumen"
   s.version          = "0.1.0"
-  s.summary          = "A short description of NPLumen."
+  s.summary          = "Light source management"
   s.description      = <<-DESC
-                       An optional longer description of NPLumen
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       NPLumen is an iOS library that allows you to treat
+                       UIViews as either light sources or objects which respond
+                       to the sources. For example you can have one view cast a
+                       relative shadow on other views.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/NPLumen"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/nebspetrovic/NPLumen"
   s.license          = 'MIT'
   s.author           = { "Nebojsa Petrovic" => "nebspetrovic@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/NPLumen.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.platform     = :ios, '7.0'
+  s.source           = { :git => "https://github.com/nebspetrovic/NPLumen.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/nebsp'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
-
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Pod/Classes/**/*.{h,m}'
   s.resource_bundles = {
-    'NPLumen' => ['Pod/Assets/*.png']
+    'NPCricket' => ['Pod/Classes/**/*.xib']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
 end
