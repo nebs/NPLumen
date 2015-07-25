@@ -1,7 +1,10 @@
 #import "NPViewController.h"
+#import <NPLumen/NPLumenGroup.h>
+#import <NPLumen/NPLumenGroupDebugger.h>
 
 @interface NPViewController ()
 
+@property (nonatomic) NPLumenGroupDebugger *lumenGroupDebugger;
 @property (nonatomic) NPLumenGroup *lumenGroup;
 @property (nonatomic) UIView *sunView;
 @property (nonatomic) UIView *view1;
@@ -29,8 +32,10 @@
     self.view2.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.view2];
 
+    self.lumenGroupDebugger = [[NPLumenGroupDebugger alloc] init];
+
     self.lumenGroup = [[NPLumenGroup alloc] init];
-    self.lumenGroup.delegate = self;
+    self.lumenGroup.delegate = self.lumenGroupDebugger;
     [self.lumenGroup addSourceView:self.sunView];
     [self.lumenGroup addViews:@[self.view1, self.view2]];
 }
@@ -38,8 +43,6 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
-
-#pragma mark - NPLumenGroupDelegate
 
 - (void)lumenGroup:(NPLumenGroup *)lumenGroup didUpdateLightVector:(CGPoint)lightVector forView:(UIView *)view {
     view.layer.shadowColor = [UIColor blackColor].CGColor;

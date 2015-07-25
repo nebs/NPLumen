@@ -32,7 +32,7 @@
 
 - (void)update {
     for (UIView *view in self.views) {
-        [self.delegate lumenGroup:self didUpdateLightVector:CGPointMake(0.5, 0.3) forView:view];
+        [self.delegate lumenGroup:self didUpdateLightVector:CGPointMake(-0.35, 0.65) forView:view];
     }
 }
 
