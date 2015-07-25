@@ -1,6 +1,6 @@
 # NPLumen
 
-[![CI Status](http://img.shields.io/travis/Nebojsa Petrovic/NPLumen.svg?style=flat)](https://travis-ci.org/Nebojsa Petrovic/NPLumen)
+[![CI Status](http://img.shields.io/travis/nebspetrovic/NPLumen.svg?style=flat)](https://travis-ci.org/nebspetrovic/NPLumen)
 [![Version](https://img.shields.io/cocoapods/v/NPLumen.svg?style=flat)](http://cocoapods.org/pods/NPLumen)
 [![License](https://img.shields.io/cocoapods/l/NPLumen.svg?style=flat)](http://cocoapods.org/pods/NPLumen)
 [![Platform](https://img.shields.io/cocoapods/p/NPLumen.svg?style=flat)](http://cocoapods.org/pods/NPLumen)
