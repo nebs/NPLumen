@@ -1,6 +1,7 @@
 #import "NPViewController.h"
 #import <NPLumen/NPLumenGroup.h>
 #import <NPLumen/NPLumenGroupDebugger.h>
+#import <NPLumen/NPLumenGroupShadowCaster.h>
 
 CGFloat const kNPViewControllerSunTimerInterval = 1.0;
 NSUInteger const kNPViewControllerLumenGroupViewCount = 4;
@@ -9,6 +10,7 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
 @interface NPViewController ()
 
 @property (nonatomic) NPLumenGroupDebugger *lumenGroupDebugger;
+@property (nonatomic) NPLumenGroupShadowCaster *lumenGroupShadowCaster;
 @property (nonatomic) NPLumenGroup *lumenGroup;
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSArray *sourceViews;
@@ -33,13 +35,6 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
-}
-
-- (void)lumenGroup:(NPLumenGroup *)lumenGroup didUpdateLightVector:(CGPoint)lightVector forView:(UIView *)view {
-    view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowOffset = CGSizeMake(2.0, 4.0);
-    view.layer.shadowOpacity = 0.8;
-    view.layer.shadowRadius = 3.0;
 }
 
 #pragma mark - Private Helpers
@@ -84,7 +79,6 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
 
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
         view.backgroundColor = [UIColor whiteColor];
-        view.alpha = 0.8;
         [self.view addSubview:view];
         [views addObject:view];
     }
@@ -92,8 +86,11 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
     self.sourceViews = [sourceViews copy];
 
     self.lumenGroupDebugger = [[NPLumenGroupDebugger alloc] init];
+    self.lumenGroupShadowCaster = [[NPLumenGroupShadowCaster alloc] init];
+
     self.lumenGroup = [[NPLumenGroup alloc] init];
-    self.lumenGroup.delegate = self.lumenGroupDebugger;
+//    self.lumenGroup.delegate = self.lumenGroupDebugger;
+    self.lumenGroup.delegate = self.lumenGroupShadowCaster;
     [self.lumenGroup addSourceViews:[sourceViews copy]];
     [self.lumenGroup addViews:[views copy]];
 
