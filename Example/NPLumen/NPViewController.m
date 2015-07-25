@@ -4,8 +4,8 @@
 #import <NPLumen/NPLumenGroupShadowCaster.h>
 
 CGFloat const kNPViewControllerSunTimerInterval = 1.0;
-NSUInteger const kNPViewControllerLumenGroupViewCount = 4;
-NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
+NSUInteger const kNPViewControllerLumenGroupViewMaxCount = 6;
+NSUInteger const kNPViewControllerLumenGroupSourceViewMaxCount = 1;
 
 @interface NPViewController ()
 
@@ -44,8 +44,11 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
         [view removeFromSuperview];
     }
 
-    NSMutableArray *sourceViews = [NSMutableArray arrayWithCapacity:kNPViewControllerLumenGroupSourceViewCount];
-    for (int i=0; i<kNPViewControllerLumenGroupSourceViewCount; i++) {
+    NSUInteger viewCount = (arc4random() % kNPViewControllerLumenGroupViewMaxCount) + 1;
+    NSUInteger sourceViewCount = (arc4random() % kNPViewControllerLumenGroupSourceViewMaxCount) + 1;
+
+    NSMutableArray *sourceViews = [NSMutableArray arrayWithCapacity:sourceViewCount];
+    for (int i=0; i<sourceViewCount; i++) {
         NSInteger minSize = 30.0;
         NSInteger maxSize = 80.0;
         CGFloat w = (arc4random() % (maxSize - minSize)) + minSize;
@@ -58,14 +61,15 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
         CGFloat y = (arc4random() % (maxY - minY)) + minY;
 
         UIView *sourceView = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        sourceView.userInteractionEnabled = NO;
         sourceView.backgroundColor = [UIColor yellowColor];
         sourceView.layer.cornerRadius = w / 2.0;
         [self.view addSubview:sourceView];
         [sourceViews addObject:sourceView];
     }
 
-    NSMutableArray *views = [NSMutableArray arrayWithCapacity:kNPViewControllerLumenGroupViewCount];
-    for (int i=0; i<kNPViewControllerLumenGroupViewCount; i++) {
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:viewCount];
+    for (int i=0; i<viewCount; i++) {
         NSInteger minSize = 40.0;
         NSInteger maxSize = 100.0;
         CGFloat w = (arc4random() % (maxSize - minSize)) + minSize;
@@ -78,6 +82,7 @@ NSUInteger const kNPViewControllerLumenGroupSourceViewCount = 1;
         CGFloat y = (arc4random() % (maxY - minY)) + minY;
 
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        view.userInteractionEnabled = NO;
         view.backgroundColor = [UIColor whiteColor];
         [self.view addSubview:view];
         [views addObject:view];
