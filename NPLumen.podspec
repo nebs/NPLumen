@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "NPLumen"
-  s.version          = "0.1.0"
+  s.version          = "0.0.1"
   s.summary          = "Light source management"
   s.description      = <<-DESC
                        NPLumen is an iOS library that allows you to treat
