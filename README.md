@@ -13,7 +13,7 @@ Lumen is an iOS library for managing sources of light and objects that interact 
 
 ## Example Usage
 
-```
+```objc
   // Create a delegate
   self.lumenGroupDebugger = [[NPLumenGroupDebugger alloc] init];
 
@@ -38,7 +38,7 @@ For convenience (and demonstration purposes) I've included two delegates in this
 
 To create your own delegate simply create a class and implement this method:
 
-```
+```objc
 - (void)lumenGroup:(NPLumenGroup *)lumenGroup didUpdateLightVector:(CGPoint)lightVector forView:(UIView *)view {
   // Do something with the given view and vector (vectors are normalized).
 }
